@@ -1,6 +1,7 @@
 'use strict'
 
-const config = require('./local_modules/config.json')
+global._config = require('./local_modules/config.json')
+const dispatcher = require('./local_modules/dispatcher')
 
 const Discord = require('discord.js')
 const fs = require('fs')
@@ -29,18 +30,6 @@ fs.readdir('./local_modules/commands/', (err, files) => {
   })
 })
 
-client.on('message', message => {
-  if (message.author.bot) return
-  if (message.content.indexOf(config.prefix) !== 0) return
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g)
-  const command = args.shift().toLowerCase()
-  if (!client.commands.has(command)) return
-  try {
-    client.commands.get(command).run(client, message, args)
-  } catch (error) {
-    console.error(error)
-    message.reply('An error occurred while processing the command, inform the administrator!')
-  }
-})
+client.on('message', message => dispatcher(client, message))
 
-client.login(config.token)
+client.login(global._config.token)
