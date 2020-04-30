@@ -1,4 +1,6 @@
-function dispatcher(client, message) {
+const fs = require('fs')
+
+function run(client, message) {
   if (message.author.bot) return
   if (message.content.indexOf(global._config.prefix) !== 0) return
   const args = message.content.slice(global._config.prefix.length).trim().split(/ +/g)
@@ -11,4 +13,16 @@ function dispatcher(client, message) {
     message.reply('An error occurred while processing the command, inform the administrator!')
   }
 }
-module.exports = dispatcher
+module.exports.run = run
+
+function add(client, type) {
+  fs.readdir(`${__dirname}/${type}/`, (err, files) => {
+    if (err) return console.error(err)
+    files.forEach(file => {
+      if (!file.endsWith('.js')) return
+      if(type === 'events') client.on(file.split('.')[0], require(`./${type}/${file}`).bind(null, client))
+      else if(type === 'commands') client.commands.set(file.split('.')[0], require(`./${type}/${file}`))
+    })
+  })
+}
+module.exports.add = add
