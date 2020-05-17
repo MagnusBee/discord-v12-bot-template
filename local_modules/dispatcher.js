@@ -2,8 +2,8 @@ const fs = require('fs')
 
 function run(client, message) {
   if (message.author.bot) return
-  if (message.content.indexOf(global._config.prefix) !== 0) return
-  const args = message.content.slice(global._config.prefix.length).trim().split(/ +/g)
+  if (message.content.indexOf(process.env.prefix) !== 0) return
+  const args = message.content.slice(process.env.prefix.length).trim().split(/ +/g)
   const command = args.shift().toLowerCase()
   if (!client.commands.has(command)) return
   try {

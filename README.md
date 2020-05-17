@@ -1,3 +1,5 @@
 # discord-v12-bot-template
 
-node v14.1.0
+Template prepared for glitch.com
+
+Change the token and prefix in the .env file
