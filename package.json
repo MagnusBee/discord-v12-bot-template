@@ -1,7 +1,7 @@
 {
-  "name": "discord-template",
+  "name": "discord-v12-bot-template",
   "version": "1.0.0",
-  "description": "Discord Basic Template",
+  "description": "Discord v12 Basic Template",
   "main": "template.js",
   "dependencies": {
     "discord.js": "^12.1.1"

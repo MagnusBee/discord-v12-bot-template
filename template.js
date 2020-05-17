@@ -3,7 +3,7 @@
 const Discord = require('discord.js')
 
 if(process.env.token && process.env.prefix) {
-  const dispatcher = require('./local_modules/dispatcher')
+  const dispatcher = require('./dispatcher')
   const client = new Discord.Client()
   client.commands = new Discord.Collection()
   dispatcher.add(client, 'events')
