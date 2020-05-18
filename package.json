@@ -1,8 +1,23 @@
 {
-  "name": "discord-v12-bot-template",
-  "version": "1.0.0",
-  "description": "Discord v12 Basic Template",
+  "name": "simple-discord-v12-bot-template",
+  "version": "0.0.1",
+  "description": "Discord v12 basic template prepared for glitch.com",
   "main": "template.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MagnusBee/discord-v12-bot-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MagnusBee/discord-v12-bot-template/issues"
+  },
+  "keywords": [
+    "bot",
+    "discord",
+    "glitch",
+    "simple",
+    "template",
+    "v12"
+  ],
   "dependencies": {
     "discord.js": "^12.1.1"
   },
