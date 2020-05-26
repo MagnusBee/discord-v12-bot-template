@@ -1,6 +1,7 @@
 module.exports = {
   name: "avatar",
   description: "Get the avatar URL of the tagged user(s), or your own avatar.",
+  aliases: ['avt'],
   run(client, message, args) {
     var template = {
       embed: {

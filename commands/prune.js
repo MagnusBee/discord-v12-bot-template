@@ -1,6 +1,7 @@
 module.exports = {
   name: "prune",
   description: "Prune up to 99 messages.",
+  aliases: ['pr'],
   run(client, message, args) {
     if (!message.member.permissions.has("ADMINISTRATOR"))
       return message.channel.send("No tienes permisos suficientes");

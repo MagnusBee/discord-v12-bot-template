@@ -1,6 +1,7 @@
 module.exports = {
   name: "kick",
   description: "Tag a member and kick them (but not really).",
+  aliases: ['kk'],
   run(client, message, args) {
     if (!message.member.permissions.has("ADMINISTRATOR"))
       return message.channel.send("No tienes permisos suficientes");

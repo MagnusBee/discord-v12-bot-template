@@ -1,6 +1,7 @@
 module.exports = {
   name: "reload",
   description: "Reload a command from your server.",
+  aliases: ['rel'],
   run(client, message, args) {
     if (!message.member.permissions.has("ADMINISTRATOR"))
       return message.channel.send("No tienes permisos suficientes");

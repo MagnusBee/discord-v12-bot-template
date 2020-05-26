@@ -7,32 +7,25 @@ function run(client, message) {
     .slice(process.env.prefix.length)
     .trim()
     .split(/ +/g);
-  const command = args.shift().toLowerCase();
-  if (!client.commands.has(command)) return;
-  try {
-    client.commands.get(command).run(client, message, args);
-  } catch (error) {
-    console.error(error);
-    message.reply(
-      "An error occurred while processing the command, inform the administrator!"
-    );
-  }
+  const cmd = args.shift().toLowerCase();
+  if(!client.commands.has(cmd)) {
+    if (!client.aliases.get(cmd)) {
+    } else client.commands.get(client.aliases.get(cmd)).run(client, message, args);
+  } else client.commands.get(cmd).run(client, message, args);
 }
-module.exports.run = run;
 
 function add(client, type) {
   fs.readdir(`${__dirname}/${type}/`, (err, files) => {
     if (err) return console.error(err);
-    files.forEach(file => {
+    for (let file of files) {
       if (!file.endsWith(".js")) return;
-      if (type === "events")
-        client.on(
-          file.split(".")[0],
-          require(`./${type}/${file}`).bind(null, client)
-        );
-      else if (type === "commands")
-        client.commands.set(file.split(".")[0], require(`./${type}/${file}`));
-    });
+      if (type === "events") client.on(file.split(".")[0], require(`./${type}/${file}`).bind(null,client));
+      else if (type === "commands") {
+        var cmd = require(`./${type}/${file}`)
+        client.commands.set(file.split(".")[0], cmd);
+        if (cmd.aliases) cmd.aliases.forEach(a => client.aliases.set(a, cmd.name));
+      }
+    };
   });
 }
 module.exports.add = add;
