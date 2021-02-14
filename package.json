@@ -1,7 +1,7 @@
 {
   "name": "discord-v12-bot-template",
   "version": "0.0.1",
-  "description": "Discord v12 bot template prepared for glitch.com",
+  "description": "Discord v12 bot template",
   "main": "template.js",
   "repository": {
     "type": "git",
