@@ -1,9 +1,9 @@
-"use strict";
+require('dotenv').config()
 
 const Discord = require("discord.js");
 
-if (process.env.token && process.env.prefix) {
-  const dispatcher = require("./dispatcher");
+if (process.env.token.length && process.env.prefix.length) {
+  const dispatcher = require("./dispatcher.js");
   const client = new Discord.Client();
   client.commands = new Discord.Collection();
   client.aliases = new Discord.Collection();

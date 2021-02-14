@@ -13,6 +13,7 @@ function run(client, message) {
     } else client.commands.get(client.aliases.get(cmd)).run(client, message, args);
   } else client.commands.get(cmd).run(client, message, args);
 }
+module.exports.run = run;
 
 function add(client, type) {
   fs.readdir(`${__dirname}/${type}/`, (err, files) => {
